@@ -1,0 +1,26 @@
+source 'https://rubygems.org'
+gem 'rails', '4.1.6'
+gem 'pg'
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'roo'
+gem 'to_xls-rails'
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0',          group: :doc
+
+gem 'spring',        group: :development
+gem 'xipio', group: :development
+gem 'devise', '~> 3.3.0'
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '3.8.0'
+gem 'social-share-button', '~> 0.1.8'
+gem 'acts-as-taggable-on', '~> 3.4.3'
+gem 'ckeditor', '~> 4.1.1'
+gem 'will_paginate', '~> 3.0.7'
+gem 'betterlorem', '~> 0.1.2'
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'paperclip', '~> 4.1'

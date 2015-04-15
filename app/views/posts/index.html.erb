@@ -1,0 +1,13 @@
+<div id="my-posts">
+	<div class="post_wrapper">
+		Download :
+		<%= link_to "Excel", export_index_path(format: "xls") %>
+		<h2>Import Posts</h2>
+		<%= form_tag import_posts_path, multipart: true do %>
+			<%= file_field_tag :file %><br>
+			<%= submit_tag "Import" %>
+		<% end %>
+	</div>
+	<%= render @posts %>
+</div>
+<div id="infinite-scrolling"><%= will_paginate%></div>

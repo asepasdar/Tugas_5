@@ -1,0 +1,34 @@
+<div id="post_content">
+	<%= link_to "Excel", export_path(@post, format: "xls") %>
+	<h1 class="title">
+		<%= @post.title %>
+	</h1>
+	<h3 class="title">
+		<%= social_share_button_tag(@post.title) %>
+	</h3>
+	<p>Tag : <%= @post.tag_list.map { |t| link_to t, tag_list_path(t) }.join(', ').html_safe %></p>
+	<p class="date">
+		<b>Submitted <%= time_ago_in_words(@post.created_at) %> Ago </b>
+		<% if user_signed_in? %>
+			| <%= link_to 'Edit', edit_post_path(@post), class: "action" %>
+			| <%= link_to 'Delete', post_path(@post), method: :delete, data:{confirm: 'Are You Sure?'}, class: "action" %>
+		<% end %>
+	</p>
+	<p class="body">
+		<%= raw (@post.body) %>
+	</p>
+
+	<div id="comments">
+		<h2><%= @post.comments.count %> Comments</h2>
+		<%= render @post.comments %>
+
+		<% if user_signed_in? %>
+			<h3>Add a comment:</h3>
+			<%= render "comments/form" %>
+		<% else %>
+			<div class= "alert">
+				You need sign in before add a comment
+			</div>
+		<% end %>
+	</div>
+</div>
