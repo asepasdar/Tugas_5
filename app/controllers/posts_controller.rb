@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	def index
 		if params[:tag_list]
-			@posts = Post.paginate(:page => params[:page], :per_page => 10).tagged_with(params[:tag_list]).order('created_at DESC')
+			@posts = Post.paginate(:page => params[:page], :per_page => 10).tagged_with(params[:tag_list]).order('created_at DESC').status_active
 		else
-			@posts = Post.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+			@posts = Post.paginate(:page => params[:page], :per_page => 10).order('created_at DESC').status_active
 		end
 		respond_to do |format|
 		  format.html
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 
-		if @post.update(params[:post].permit(:title, :body))
+		if @post.update(params[:post].permit(:title, :body, :status))
 			redirect_to @post
 		else
 			render 'edit'
@@ -63,11 +63,17 @@ class PostsController < ApplicationController
 	end
 
 	def status
-		
+		@post = Post.find(params[:id])
+		if @post.status == "off"
+			@post.update(:status => "active")
+		else
+			@post.update(:status => "off")
+		end
+		redirect_to list_index_path, notice: "Post status has changed to " + @post.status
 	end
 
 	private
 		def post_params
-			params.require(:post).permit(:title, :body, :tag_list)
+			params.require(:post).permit(:title, :body, :tag_list, :status)
 		end
 end
