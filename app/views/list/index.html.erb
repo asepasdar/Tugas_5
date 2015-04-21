@@ -19,10 +19,8 @@
 						<td><%= time_ago_in_words(post.created_at) %> Ago </td>
 						<td><%= link_to post.status, status_path(post.id), class: "action" %></td>
 						<td>
-							<% if user_signed_in? %>
-								<%= link_to 'Edit', edit_post_path(post), class: "action" %>
-								| <%= link_to 'Delete', post_path(post), method: :delete, data:{confirm: 'Are You Sure?'}, class: "action" %>
-							<% end %>
+							<%= link_to 'Edit', edit_post_path(post), class: "action" %>
+							| <%= link_to 'Delete', post_path(post), method: :delete, data:{confirm: 'Are You Sure?'}, class: "action" %>
 						</td>
 					</tr>
 				<% end %>
