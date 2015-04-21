@@ -59,7 +59,14 @@ class PostsController < ApplicationController
 	end
 
 	def list
-		@posts = Post.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+		if params[:tag_list]
+			@posts = current_user.posts.paginate(:page => params[:page], :per_page => 10).tagged_with(params[:tag_list]).order('created_at DESC')
+		else
+			@posts = current_user.posts.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+		end
+		respond_to do |format|
+		  format.html
+		end
 	end
 
 	def status
@@ -69,7 +76,7 @@ class PostsController < ApplicationController
 		else
 			@post.update(:status => "off")
 		end
-		redirect_to list_index_path, notice: "Post status has changed to " + @post.status
+		redirect_to list_path, notice: "Post status has changed to " + @post.status
 	end
 
 	private
