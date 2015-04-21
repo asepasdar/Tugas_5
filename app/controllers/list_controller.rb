@@ -2,9 +2,9 @@ class ListController < ApplicationController
 	before_action :authenticate_user!
   def index
 		if params[:tag_list]
-			@posts = Post.paginate(:page => params[:page], :per_page => 10).tagged_with(params[:tag_list]).order('created_at DESC')
+			@posts = current_user.posts.paginate(:page => params[:page], :per_page => 10).tagged_with(params[:tag_list]).order('created_at DESC')
 		else
-			@posts = Post.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+			@posts = current_user.posts.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
 		end
 		respond_to do |format|
 		  format.html
