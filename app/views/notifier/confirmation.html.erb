@@ -1,0 +1,9 @@
+<h1>Notification</h1>
+Hi <%= @owner %>,<br>
+You have received a comment on your article "<%= @post.title %>"<br>
+<br>
+
+<p>
+  <%= @commenter.name %> : "<%= @commenter.body %>"
+</p>
+<p><%= link_to "Check This Out !!!",  post_url(@post) %></p>
