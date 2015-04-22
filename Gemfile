@@ -9,6 +9,7 @@ gem 'turbolinks'
 gem 'roo'
 gem 'to_xls-rails'
 gem 'acts_as_xlsx'
+gem 'sidekiq'
 gem 'axlsx', '~> 2.0.1'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc

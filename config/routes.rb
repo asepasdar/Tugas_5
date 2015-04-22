@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :export
+
   root "posts#index"
   get '/list', to: 'posts#list'
   get '/order', to: 'orders#index'

@@ -40,7 +40,7 @@ module ApplicationHelper
 		end
 	end
 
-	def delete_action
+	def delete_action(comment)
 		if user_signed_in?
 			link_to 'Delete', [comment.post, comment], method: :delete, class: "button", data: {confirm: "Are you sure?"}
 		else
